@@ -2,6 +2,13 @@
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.2] - 2026-10-18
+
+### Changed
+- The download buttons are now **Add Ripartizioni / Regioni / Province / Comuni** (*Aggiungi …* in Italian): RustGIS downloads the file and adds the layers, but saves no file on disk.
+- Ribbon order: Ripartizioni, Regioni, Province, Comuni, then Boundaries URL.
+- The README's **Use** section is now a full user guide, with an Italian version in `GUIDA.md`; the buttons' help text and the plugin description link to it.
+
 ## [0.3.1] - 2026-10-18
 
 ### Added

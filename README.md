@@ -17,20 +17,37 @@ Plugins › Plugin Manager › install the `.rgplugin` from the releases, or bui
 
 ## Use
 
-- **Download Regioni / Province / Comuni / Ripartizioni**: ribbon buttons (Plugins tab). Each
-  downloads the 2026 boundaries of that level as GeoPackage and adds them as layers.
-- **Boundaries URL** (button): shows the URL of the 2026 regions in the status bar.
-- **ISTAT Boundaries URL** (tool, with a form): reference date, level, region, province (one menu
-  per geographic area), format. It prints the URL and a `curl` command. Tools cannot call
-  `layer.addUrl`, so with this form you download the file yourself and open it with Add Data.
+*[Guida in italiano](GUIDA.md)*
 
-The commands also accept parameters from a script, for example another date or a region:
-`{"date"?: YYYYMMDD, "level"?: regioni|province|comuni|ripartizioni, "region"?: cod_reg,
-"province"?: cod_uts, "format"?: gpkg|zip|csv|kml|kmz}`.
+### Buttons (Plugins tab)
 
-Codes: regions are `cod_reg` (1 = Piemonte … 20 = Sardegna) and provinces `cod_uts`
-(201 = Torino), both without leading zeros. The province menus list the 2026 units; for older
-dates the codes can differ.
+- **Add Ripartizioni**: the 5 geographic areas (Nord-ovest, Nord-est, Centro, Sud, Isole).
+- **Add Regioni**: the 20 regions.
+- **Add Province**: the provinces and metropolitan cities.
+- **Add Comuni**: every comune of Italy (a large file, it takes a few seconds more).
+- **Boundaries URL**: shows the address of the regions' data in the status bar.
+
+The buttons use the boundaries at 1 January 2026. RustGIS downloads the GeoPackage and adds the layers to the project, but doesn't save the file on disk: to get it, select the layer and use **Publish › Output › Export Features**, which lets you choose the folder and the format.
+
+### Other dates and areas: the tool
+
+The **ISTAT Boundaries URL** tool (Geoprocessing, *ISTAT Boundaries* toolbox) has a form with the reference date (1991 to 2026), level, region, province and format. It builds the data's address and a `curl` command to download it. The tool can't add layers: download the file and open it with **Add Data**, or use the address with **Add Data › From URL**.
+
+### From a script
+
+The commands take parameters, for example the comuni of Basilicata in 2020:
+
+```
+plugin:istat-boundaries/download-comuni={"date": "20200101", "region": "17"}
+```
+
+Parameters: `date` (YYYYMMDD), `level` (`regioni`, `province`, `comuni`, `ripartizioni`), `region` (`cod_reg`), `province` (`cod_uts`), `format` (`gpkg`, `zip`, `csv`, `kml`, `kmz`).
+
+### Codes
+
+- Regions, `cod_reg`: 1 = Piemonte … 20 = Sardegna.
+- Provinces, `cod_uts`: for example 201 = Torino.
+- Without leading zeros (`1`, not `01`). The form's menus list the 2026 units: for older dates the codes can differ.
 
 ![](gui.png)
 

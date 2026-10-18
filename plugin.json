@@ -1,8 +1,8 @@
 {
   "id": "istat-boundaries",
   "name": "ISTAT Boundaries",
-  "version": "0.3.1",
-  "description": "Builds the download address of the ISTAT administrative boundaries served by the onData API (confini-amministrativi.it) with a curl command, and can download and open them in RustGIS. Uses the onData API by Alessio Cimarelli.",
+  "version": "0.3.2",
+  "description": "Builds the download address of the ISTAT administrative boundaries served by the onData API (confini-amministrativi.it) with a curl command, and can download and open them in RustGIS. Uses the onData API by Alessio Cimarelli. Guide: https://github.com/pigreco/rustgis-istat-boundaries",
   "author": "Salvatore Fiandaca",
   "homepage": "https://github.com/pigreco/rustgis-istat-boundaries",
   "license": "MIT",
@@ -15,38 +15,38 @@
   ],
   "commands": [
     {
-      "id": "boundaries-url",
-      "label": "Boundaries\nURL",
-      "help": "Show the download URL of ISTAT boundaries in the status bar.",
-      "icon": "bookmark",
+      "id": "download-ripartizioni",
+      "label": "Add\nRipartizioni",
+      "help": "Add the geographic areas (Nord-ovest, Nord-est, Centro, Sud, Isole) as layers, downloaded from the onData API. Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries",
+      "icon": "zoom_full",
       "params": "{\"date\"?: YYYYMMDD (default 20260101), \"level\"?: regioni|province|comuni|ripartizioni, \"region\"?: cod_reg, \"province\"?: cod_uts, \"comuni\"?: bool, \"format\"?: gpkg|zip|csv|kml|kmz}"
     },
     {
       "id": "download-boundaries",
-      "label": "Download\nRegioni",
-      "help": "Download the regions (or the region chosen with a parameter) and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.",
+      "label": "Add\nRegioni",
+      "help": "Add the regions (or the region chosen with a parameter) as layers, downloaded from the onData API. Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries",
       "icon": "zoom_full",
       "params": "{\"date\"?: YYYYMMDD (default 20260101), \"level\"?: regioni|province|comuni|ripartizioni, \"region\"?: cod_reg, \"province\"?: cod_uts, \"comuni\"?: bool, \"format\"?: gpkg|zip|csv|kml|kmz}"
     },
     {
       "id": "download-province",
-      "label": "Download\nProvince",
-      "help": "Download the provinces and metropolitan cities and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.",
+      "label": "Add\nProvince",
+      "help": "Add the provinces and metropolitan cities as layers, downloaded from the onData API. Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries",
       "icon": "zoom_full",
       "params": "{\"date\"?: YYYYMMDD (default 20260101), \"level\"?: regioni|province|comuni|ripartizioni, \"region\"?: cod_reg, \"province\"?: cod_uts, \"comuni\"?: bool, \"format\"?: gpkg|zip|csv|kml|kmz}"
     },
     {
       "id": "download-comuni",
-      "label": "Download\nComuni",
-      "help": "Download all the comuni of Italy and add them as layers (a large file). Dates other than 2026-01-01 and other areas: pass parameters from a script.",
+      "label": "Add\nComuni",
+      "help": "Add all the comuni of Italy as layers, downloaded from the onData API (a large file). Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries",
       "icon": "zoom_full",
       "params": "{\"date\"?: YYYYMMDD (default 20260101), \"level\"?: regioni|province|comuni|ripartizioni, \"region\"?: cod_reg, \"province\"?: cod_uts, \"comuni\"?: bool, \"format\"?: gpkg|zip|csv|kml|kmz}"
     },
     {
-      "id": "download-ripartizioni",
-      "label": "Download\nRipartizioni",
-      "help": "Download the geographic areas (Nord-ovest, Nord-est, Centro, Sud, Isole) and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.",
-      "icon": "zoom_full",
+      "id": "boundaries-url",
+      "label": "Boundaries\nURL",
+      "help": "Show the download URL of ISTAT boundaries in the status bar. Guide: https://github.com/pigreco/rustgis-istat-boundaries",
+      "icon": "bookmark",
       "params": "{\"date\"?: YYYYMMDD (default 20260101), \"level\"?: regioni|province|comuni|ripartizioni, \"region\"?: cod_reg, \"province\"?: cod_uts, \"comuni\"?: bool, \"format\"?: gpkg|zip|csv|kml|kmz}"
     }
   ],
@@ -306,15 +306,6 @@
     "it": {
       "all (no filter)": "tutte (nessun filtro)",
       "Boundaries\nURL": "URL\nconfini",
-      "Show the download URL of ISTAT boundaries in the status bar.": "Mostra nella barra di stato l'URL di download dei confini ISTAT.",
-      "Download\nRegioni": "Scarica\nRegioni",
-      "Download the regions (or the region chosen with a parameter) and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica le regioni (o la regione scelta con un parametro) e le aggiunge come livelli. Altre date e altre aree: passa i parametri da uno script.",
-      "Download\nProvince": "Scarica\nProvince",
-      "Download the provinces and metropolitan cities and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica le province e le città metropolitane e le aggiunge come livelli. Altre date e altre aree: passa i parametri da uno script.",
-      "Download\nComuni": "Scarica\nComuni",
-      "Download all the comuni of Italy and add them as layers (a large file). Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica tutti i comuni d'Italia e li aggiunge come livelli (file grande). Altre date e altre aree: passa i parametri da uno script.",
-      "Download\nRipartizioni": "Scarica\nRipartizioni",
-      "Download the geographic areas (Nord-ovest, Nord-est, Centro, Sud, Isole) and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica le ripartizioni geografiche (Nord-ovest, Nord-est, Centro, Sud, Isole) e le aggiunge come livelli. Altre date e altre aree: passa i parametri da uno script.",
       "ISTAT Boundaries URL": "URL confini ISTAT",
       "Builds the onData API address of ISTAT boundaries for a reference date, level and area, and a curl command to download it.": "Costruisce l'indirizzo dell'API onData dei confini ISTAT per data di riferimento, livello e area, e un comando curl per scaricarli.",
       "ISTAT Boundaries": "Confini ISTAT",
@@ -334,7 +325,16 @@
       "choose a province in one area menu only": "scegli una provincia in un solo menu di area",
       "province {p} is not in region {r}: choose a matching province or set the region to 'all'": "la provincia {p} non è nella regione {r}: scegli una provincia coerente o imposta la regione su 'tutte'",
       "level '{other}': use regioni, province, comuni or ripartizioni": "livello '{other}': usa regioni, province, comuni o ripartizioni",
-      "Builds the download address of the ISTAT administrative boundaries served by the onData API (confini-amministrativi.it) with a curl command, and can download and open them in RustGIS. Uses the onData API by Alessio Cimarelli.": "Costruisce l'indirizzo di download dei confini amministrativi ISTAT serviti dall'API onData (confini-amministrativi.it) con un comando curl, e può scaricarli e aprirli in RustGIS. Usa le API di onData realizzate da Alessio Cimarelli."
+      "Add\nRipartizioni": "Aggiungi\nRipartizioni",
+      "Add\nRegioni": "Aggiungi\nRegioni",
+      "Add\nProvince": "Aggiungi\nProvince",
+      "Add\nComuni": "Aggiungi\nComuni",
+      "Add the geographic areas (Nord-ovest, Nord-est, Centro, Sud, Isole) as layers, downloaded from the onData API. Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries": "Aggiunge le ripartizioni geografiche (Nord-ovest, Nord-est, Centro, Sud, Isole) come livelli, scaricandole dall'API onData. Altre date e altre aree: passa i parametri da uno script. Guida: https://github.com/pigreco/rustgis-istat-boundaries/blob/main/GUIDA.md",
+      "Add the regions (or the region chosen with a parameter) as layers, downloaded from the onData API. Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries": "Aggiunge le regioni (o la regione scelta con un parametro) come livelli, scaricandole dall'API onData. Altre date e altre aree: passa i parametri da uno script. Guida: https://github.com/pigreco/rustgis-istat-boundaries/blob/main/GUIDA.md",
+      "Add the provinces and metropolitan cities as layers, downloaded from the onData API. Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries": "Aggiunge le province e le città metropolitane come livelli, scaricandole dall'API onData. Altre date e altre aree: passa i parametri da uno script. Guida: https://github.com/pigreco/rustgis-istat-boundaries/blob/main/GUIDA.md",
+      "Add all the comuni of Italy as layers, downloaded from the onData API (a large file). Dates other than 2026-01-01 and other areas: pass parameters from a script. Guide: https://github.com/pigreco/rustgis-istat-boundaries": "Aggiunge tutti i comuni d'Italia come livelli, scaricandoli dall'API onData (file grande). Altre date e altre aree: passa i parametri da uno script. Guida: https://github.com/pigreco/rustgis-istat-boundaries/blob/main/GUIDA.md",
+      "Show the download URL of ISTAT boundaries in the status bar. Guide: https://github.com/pigreco/rustgis-istat-boundaries": "Mostra nella barra di stato l'URL di download dei confini ISTAT. Guida: https://github.com/pigreco/rustgis-istat-boundaries/blob/main/GUIDA.md",
+      "Builds the download address of the ISTAT administrative boundaries served by the onData API (confini-amministrativi.it) with a curl command, and can download and open them in RustGIS. Uses the onData API by Alessio Cimarelli. Guide: https://github.com/pigreco/rustgis-istat-boundaries": "Costruisce l'indirizzo di download dei confini amministrativi ISTAT serviti dall'API onData (confini-amministrativi.it) con un comando curl, e può scaricarli e aprirli in RustGIS. Usa le API di onData realizzate da Alessio Cimarelli. Guida: https://github.com/pigreco/rustgis-istat-boundaries/blob/main/GUIDA.md"
     }
   }
 }

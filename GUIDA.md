@@ -18,7 +18,20 @@ I pulsanti sono nella scheda **Plugins**.
 - **Aggiungi Comuni**: tutti i comuni d'Italia (file grande, qualche secondo in più).
 - **URL confini**: mostra nella barra di stato l'indirizzo dei dati delle regioni.
 
-I pulsanti usano i confini al 1° gennaio 2026. RustGIS scarica il GeoPackage e aggiunge i livelli al progetto, ma non salva il file su disco: per averlo, seleziona il livello e usa **Publish › Output › Export Features**, che ti fa scegliere cartella e formato.
+I pulsanti usano i confini al 1° gennaio 2026.
+
+> [!IMPORTANT]
+> I dati vengono aggiunti al progetto, non salvati in una cartella. Per avere il file su disco, vedi [Salvare i dati su disco](#salvare-i-dati-su-disco).
+
+## Salvare i dati su disco
+
+RustGIS scarica il GeoPackage e tiene i livelli nel progetto, senza salvare il file. Per averlo in una cartella:
+
+1. seleziona il livello aggiunto;
+2. usa **Publish › Output › Export Features**;
+3. scegli cartella, nome e formato (GeoPackage, GeoJSON, Shapefile, CSV, KML…).
+
+Il file salvato è il livello come RustGIS lo ha caricato, non una copia del file originale dell'API.
 
 ## Altre date e altre aree: lo strumento
 

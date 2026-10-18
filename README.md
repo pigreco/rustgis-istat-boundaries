@@ -27,7 +27,20 @@ Plugins › Plugin Manager › install the `.rgplugin` from the releases, or bui
 - **Add Comuni**: every comune of Italy (a large file, it takes a few seconds more).
 - **Boundaries URL**: shows the address of the regions' data in the status bar.
 
-The buttons use the boundaries at 1 January 2026. RustGIS downloads the GeoPackage and adds the layers to the project, but doesn't save the file on disk: to get it, select the layer and use **Publish › Output › Export Features**, which lets you choose the folder and the format.
+The buttons use the boundaries at 1 January 2026.
+
+> [!IMPORTANT]
+> The data are added to the project, not saved in a folder. To get the file on disk, see [Saving the data on disk](#saving-the-data-on-disk).
+
+### Saving the data on disk
+
+RustGIS downloads the GeoPackage and keeps the layers in the project, without saving the file. To get it in a folder:
+
+1. select the added layer;
+2. use **Publish › Output › Export Features**;
+3. choose the folder, the name and the format (GeoPackage, GeoJSON, Shapefile, CSV, KML…).
+
+The saved file is the layer as RustGIS loaded it, not a copy of the API's original file.
 
 ### Other dates and areas: the tool
 

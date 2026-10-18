@@ -32,6 +32,8 @@ Codes: regions are `cod_reg` (1 = Piemonte … 20 = Sardegna) and provinces `cod
 (201 = Torino), both without leading zeros. The province menus list the 2026 units; for older
 dates the codes can differ.
 
+![](gui.png)
+
 ## Build
 
 ```sh

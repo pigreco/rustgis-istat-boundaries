@@ -44,4 +44,9 @@ cargo test
 
 ## License
 
-MIT. Data: ISTAT, via confini-amministrativi.it (check their terms for reuse).
+The plugin code is MIT.
+
+The data are by ISTAT, served by [confini-amministrativi.it](https://www.confini-amministrativi.it), and
+are released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.it) unless stated
+otherwise (see the [ISTAT legal notes](https://www.istat.it/note-legali/)). When you reuse them, credit
+ISTAT, link the licence and say whether you changed the data.

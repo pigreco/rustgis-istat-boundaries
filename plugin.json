@@ -3,7 +3,7 @@
   "name": "ISTAT Boundaries",
   "version": "0.2.1",
   "description": "Builds the download address of the ISTAT administrative boundaries served by the onData API (confini-amministrativi.it) with a curl command, and can download and open them in RustGIS.",
-  "author": "pigreco",
+  "author": "Salvatore Fiandaca",
   "homepage": "https://github.com/pigreco/rustgis-istat-boundaries",
   "license": "MIT",
   "entry": "plugin.wasm",

@@ -3,6 +3,8 @@
 
 use rustgis_plugin::{Kind, Request, ToolOutput, Value, host, json};
 
+/// The manifest, for the `i18n` table that words the error messages in the interface language.
+const MANIFEST: &str = include_str!("../plugin.json");
 const BASE: &str = "https://www.confini-amministrativi.it/api/v2/it/";
 /// The reference dates the onData API serves.
 const DATES: [&str; 24] = ["20260101", "20250101", "20240101", "20230101", "20220101", "20210101", "20200101", "20190101", "20180101", "20170101", "20160101", "20150101", "20140101", "20130101", "20120101", "20111009", "20100101", "20060101", "20050101", "20040101", "20030101", "20020101", "20011021", "19911020"];
@@ -27,7 +29,7 @@ fn handle(req: Request) -> Result<Value, String> {
             let url = build_url(&req)?;
             Ok(ToolOutput::new().message(url.clone()).message(curl(&url)).into())
         }
-        (_, other) => Err(format!("ISTAT Boundaries has no '{other}'")),
+        (_, other) => Err(req.tr(MANIFEST, "ISTAT Boundaries has no '{other}'", &[("other", other)])),
     }
 }
 
@@ -54,11 +56,11 @@ fn curl(url: &str) -> String {
 }
 
 /// A code: digits only (so it can't alter the address), up to 3, read from the start of the
-/// text, so a menu entry such as "17 Basilicata" gives 17. Entries with no number ("tutte")
+/// text, so a menu entry such as "17 Basilicata" gives 17. Entries with no number ("all (no filter)", or "tutte" in Italian)
 /// mean no filter. The API wants it without leading zeros (`1`, not `01`).
 fn code<'a>(req: &'a Request, name: &str) -> Result<Option<&'a str>, String> {
     let Some(text) = req.str(name).map(str::trim).filter(|s| !s.is_empty()) else { return Ok(None) };
-    if text.starts_with("tutte") {
+    if text.starts_with("all (") || text.starts_with("tutte") {
         return Ok(None);
     }
     let end = text.find(|c: char| !c.is_ascii_digit()).unwrap_or(text.len());
@@ -66,7 +68,7 @@ fn code<'a>(req: &'a Request, name: &str) -> Result<Option<&'a str>, String> {
     if (1..=3).contains(&digits.len()) && (label.is_empty() || label.starts_with(' ')) {
         Ok(Some(digits.trim_start_matches('0').max("0")))
     } else {
-        Err(format!("'{name}': '{text}' is not a code (up to 3 digits)"))
+        Err(req.tr(MANIFEST, "'{name}': '{text}' is not a code (up to 3 digits)", &[("name", name), ("text", text)]))
     }
 }
 
@@ -74,11 +76,11 @@ fn code<'a>(req: &'a Request, name: &str) -> Result<Option<&'a str>, String> {
 fn build_url(req: &Request) -> Result<String, String> {
     let date = req.str("date").map(str::trim).filter(|s| !s.is_empty()).unwrap_or(DATES[0]);
     if !DATES.contains(&date) {
-        return Err(format!("'{date}' is not a reference date; use one of {}", DATES.join(", ")));
+        return Err(req.tr(MANIFEST, "'{date}' is not a reference date; use one of {dates}", &[("date", date), ("dates", &DATES.join(", "))]));
     }
     let format = req.str("format").unwrap_or("gpkg");
     if !FORMATS.contains(&format) {
-        return Err(format!("format '{format}': use one of {}", FORMATS.join(", ")));
+        return Err(req.tr(MANIFEST, "format '{format}': use one of {formats}", &[("format", format), ("formats", &FORMATS.join(", "))]));
     }
     let region = code(req, "region")?;
     // One menu per geographic area (a form menu holds at most 64 entries); a command passes `province`.
@@ -87,13 +89,13 @@ fn build_url(req: &Request) -> Result<String, String> {
         .filter_map(|n| code(req, n).transpose());
     let province = provinces.next().transpose()?;
     if provinces.next().is_some() {
-        return Err("choose a province in one area menu only".into());
+        return Err(req.tr(MANIFEST, "choose a province in one area menu only", &[]));
     }
     drop(provinces);
     if let (Some(r), Some(p), true) = (region, province, date == DATES[0]) {
         let (r, p): (u8, u16) = (r.parse().unwrap_or(0), p.parse().unwrap_or(0));
         if UTS.iter().any(|&(c, _)| c == p) && !UTS.contains(&(p, r)) {
-            return Err(format!("province {p} is not in region {r}: choose a matching province or set the region to 'tutte'"));
+            return Err(req.tr(MANIFEST, "province {p} is not in region {r}: choose a matching province or set the region to 'all'", &[("p", &p.to_string()), ("r", &r.to_string())]));
         }
     }
     let comuni = req.bool("comuni") == Some(true);
@@ -113,7 +115,7 @@ fn build_url(req: &Request) -> Result<String, String> {
             (None, Some(r)) => format!("regioni/{r}/comuni"),
             (None, None) => "comuni".to_string(),
         },
-        other => return Err(format!("level '{other}': use regioni, province, comuni or ripartizioni")),
+        other => return Err(req.tr(MANIFEST, "level '{other}': use regioni, province, comuni or ripartizioni", &[("other", other)])),
     };
     // A command can also ask for one province, or its comuni.
     let path = match (req.str("level"), province, comuni) {
@@ -138,15 +140,27 @@ mod tests {
     }
 
     fn url(params: Value) -> Result<String, String> {
+        url_in("en", params)
+    }
+
+    fn url_in(lang: &str, params: Value) -> Result<String, String> {
         let req = Request {
             kind: Kind::Tool,
             id: "boundaries-url".into(),
             params,
             layers: Default::default(),
             files: Default::default(),
-            lang: "en".into(),
+            lang: lang.into(),
         };
         build_url(&req)
+    }
+
+    #[test]
+    fn errors_follow_the_interface_language() {
+        let bad = json!({"date": "20260102"});
+        assert!(url_in("en", bad.clone()).unwrap_err().contains("is not a reference date"));
+        assert!(url_in("it", bad).unwrap_err().contains("non è una data di riferimento"));
+        assert_eq!(url(json!({"region": "all (no filter)"})).unwrap(), url(json!({"region": "tutte (nessun filtro)"})).unwrap());
     }
 
     #[test]

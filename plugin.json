@@ -107,7 +107,7 @@
           "label": "Region",
           "kind": "choice",
           "choices": [
-            "tutte (nessun filtro)",
+            "all (no filter)",
             "1 Piemonte",
             "2 Valle d'Aosta",
             "3 Lombardia",
@@ -129,14 +129,14 @@
             "19 Sicilia",
             "20 Sardegna"
           ],
-          "default": "tutte (nessun filtro)"
+          "default": "all (no filter)"
         },
         {
           "name": "province_nw",
           "label": "Province / UTS - Nord-ovest (optional)",
           "kind": "choice",
           "choices": [
-            "tutte (nessun filtro)",
+            "all (no filter)",
             "6 Alessandria (AL) - Piemonte",
             "5 Asti (AT) - Piemonte",
             "96 Biella (BI) - Piemonte",
@@ -163,14 +163,14 @@
             "11 La Spezia (SP) - Liguria",
             "9 Savona (SV) - Liguria"
           ],
-          "default": "tutte (nessun filtro)"
+          "default": "all (no filter)"
         },
         {
           "name": "province_ne",
           "label": "Province / UTS - Nord-est (optional)",
           "kind": "choice",
           "choices": [
-            "tutte (nessun filtro)",
+            "all (no filter)",
             "21 Bolzano/Bozen (BZ) - Trentino-Alto Adige",
             "22 Trento (TN) - Trentino-Alto Adige",
             "25 Belluno (BL) - Veneto",
@@ -194,14 +194,14 @@
             "35 Reggio nell'Emilia (RE) - Emilia-Romagna",
             "99 Rimini (RN) - Emilia-Romagna"
           ],
-          "default": "tutte (nessun filtro)"
+          "default": "all (no filter)"
         },
         {
           "name": "province_c",
           "label": "Province / UTS - Centro (optional)",
           "kind": "choice",
           "choices": [
-            "tutte (nessun filtro)",
+            "all (no filter)",
             "51 Arezzo (AR) - Toscana",
             "248 Firenze (FI) - Toscana",
             "53 Grosseto (GR) - Toscana",
@@ -225,14 +225,14 @@
             "258 Roma (RM) - Lazio",
             "56 Viterbo (VT) - Lazio"
           ],
-          "default": "tutte (nessun filtro)"
+          "default": "all (no filter)"
         },
         {
           "name": "province_s",
           "label": "Province / UTS - Sud (optional)",
           "kind": "choice",
           "choices": [
-            "tutte (nessun filtro)",
+            "all (no filter)",
             "69 Chieti (CH) - Abruzzo",
             "66 L'Aquila (AQ) - Abruzzo",
             "68 Pescara (PE) - Abruzzo",
@@ -258,14 +258,14 @@
             "280 Reggio Calabria (RC) - Calabria",
             "102 Vibo Valentia (VV) - Calabria"
           ],
-          "default": "tutte (nessun filtro)"
+          "default": "all (no filter)"
         },
         {
           "name": "province_i",
           "label": "Province / UTS - Isole (optional)",
           "kind": "choice",
           "choices": [
-            "tutte (nessun filtro)",
+            "all (no filter)",
             "84 Agrigento (AG) - Sicilia",
             "85 Caltanissetta (CL) - Sicilia",
             "287 Catania (CT) - Sicilia",
@@ -284,7 +284,7 @@
             "312 Sassari (SS) - Sardegna",
             "119 Sulcis Iglesiente (CI) - Sardegna"
           ],
-          "default": "tutte (nessun filtro)"
+          "default": "all (no filter)"
         },
         {
           "name": "format",
@@ -301,5 +301,40 @@
         }
       ]
     }
-  ]
+  ],
+  "i18n": {
+    "it": {
+      "Builds the download address of the ISTAT administrative boundaries served by the onData API (confini-amministrativi.it) with a curl command, and can download and open them in RustGIS.": "Costruisce l'indirizzo di download dei confini amministrativi ISTAT serviti dall'API onData (confini-amministrativi.it) con un comando curl, e può scaricarli e aprirli in RustGIS.",
+      "all (no filter)": "tutte (nessun filtro)",
+      "Boundaries\nURL": "URL\nconfini",
+      "Show the download URL of ISTAT boundaries in the status bar.": "Mostra nella barra di stato l'URL di download dei confini ISTAT.",
+      "Download\nRegioni": "Scarica\nRegioni",
+      "Download the regions (or the region chosen with a parameter) and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica le regioni (o la regione scelta con un parametro) e le aggiunge come livelli. Altre date e altre aree: passa i parametri da uno script.",
+      "Download\nProvince": "Scarica\nProvince",
+      "Download the provinces and metropolitan cities and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica le province e le città metropolitane e le aggiunge come livelli. Altre date e altre aree: passa i parametri da uno script.",
+      "Download\nComuni": "Scarica\nComuni",
+      "Download all the comuni of Italy and add them as layers (a large file). Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica tutti i comuni d'Italia e li aggiunge come livelli (file grande). Altre date e altre aree: passa i parametri da uno script.",
+      "Download\nRipartizioni": "Scarica\nRipartizioni",
+      "Download the geographic areas (Nord-ovest, Nord-est, Centro, Sud, Isole) and add them as layers. Dates other than 2026-01-01 and other areas: pass parameters from a script.": "Scarica le ripartizioni geografiche (Nord-ovest, Nord-est, Centro, Sud, Isole) e le aggiunge come livelli. Altre date e altre aree: passa i parametri da uno script.",
+      "ISTAT Boundaries URL": "URL confini ISTAT",
+      "Builds the onData API address of ISTAT boundaries for a reference date, level and area, and a curl command to download it.": "Costruisce l'indirizzo dell'API onData dei confini ISTAT per data di riferimento, livello e area, e un comando curl per scaricarli.",
+      "ISTAT Boundaries": "Confini ISTAT",
+      "Reference date": "Data di riferimento",
+      "Boundary level": "Livello dei confini",
+      "Region": "Regione",
+      "Province / UTS - Nord-ovest (optional)": "Province / UTS - Nord-ovest (facoltativo)",
+      "Province / UTS - Nord-est (optional)": "Province / UTS - Nord-est (facoltativo)",
+      "Province / UTS - Centro (optional)": "Province / UTS - Centro (facoltativo)",
+      "Province / UTS - Sud (optional)": "Province / UTS - Sud (facoltativo)",
+      "Province / UTS - Isole (optional)": "Province / UTS - Isole (facoltativo)",
+      "Format": "Formato",
+      "ISTAT Boundaries has no '{other}'": "ISTAT Boundaries non ha '{other}'",
+      "'{name}': '{text}' is not a code (up to 3 digits)": "'{name}': '{text}' non è un codice (fino a 3 cifre)",
+      "'{date}' is not a reference date; use one of {dates}": "'{date}' non è una data di riferimento; usa una tra {dates}",
+      "format '{format}': use one of {formats}": "formato '{format}': usa uno tra {formats}",
+      "choose a province in one area menu only": "scegli una provincia in un solo menu di area",
+      "province {p} is not in region {r}: choose a matching province or set the region to 'all'": "la provincia {p} non è nella regione {r}: scegli una provincia coerente o imposta la regione su 'tutte'",
+      "level '{other}': use regioni, province, comuni or ripartizioni": "livello '{other}': usa regioni, province, comuni o ripartizioni"
+    }
+  }
 }

@@ -2,7 +2,7 @@
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [0.3.0] - 2026-10-18
 
 ### Added
 - Italian translation of the interface and of the error messages (`i18n` table in `plugin.json`).

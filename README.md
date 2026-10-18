@@ -1,5 +1,11 @@
 # ISTAT Boundaries (RustGIS plugin)
 
+[![Release](https://img.shields.io/github/v/release/pigreco/rustgis-istat-boundaries)](https://github.com/pigreco/rustgis-istat-boundaries/releases/latest)
+[![Tests](https://github.com/pigreco/rustgis-istat-boundaries/actions/workflows/tests.yml/badge.svg)](https://github.com/pigreco/rustgis-istat-boundaries/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/github/license/pigreco/rustgis-istat-boundaries)](LICENSE)
+![Language](https://img.shields.io/github/languages/top/pigreco/rustgis-istat-boundaries)
+![Views](https://visitor-badge.laobi.icu/badge?page_id=pigreco.rustgis-istat-boundaries)
+
 Download the Italian administrative boundaries published by ISTAT, served by the
 [onData API](https://www.confini-amministrativi.it/), into [RustGIS](https://rustgis.app).
 Inspired by the QGIS plugin [ondata/istat_boundaries_downloader](https://github.com/ondata/istat_boundaries_downloader).

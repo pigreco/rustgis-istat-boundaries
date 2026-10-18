@@ -42,6 +42,13 @@ python scripts/package.py      # -> dist/istat-boundaries-<version>.rgplugin
 cargo test
 ```
 
+## Credits
+
+Boundaries are served by the [onData](https://github.com/ondata) API at
+[confini-amministrativi.it](https://www.confini-amministrativi.it), created by Alessio Cimarelli.
+This plugin is inspired by the QGIS plugin
+[istat_boundaries_downloader](https://github.com/ondata/istat_boundaries_downloader).
+
 ## License
 
 The plugin code is MIT.

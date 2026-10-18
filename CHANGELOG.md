@@ -2,6 +2,16 @@
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.2] - 2026-10-18
+
+### Added
+- User guide: the README's **Use** section in English, and `GUIDA.md` in Italian. It explains the buttons, the tool, the script parameters and the codes, with a highlighted note that the data are added to the project and a section on saving them on disk (**Publish › Output › Export Features**).
+- The buttons' help text and the plugin description end with the guide's address, after a separator line in the help text.
+
+### Changed
+- The download buttons are now **Add Ripartizioni / Regioni / Province / Comuni** (*Aggiungi …* in Italian): RustGIS downloads the file and adds the layers, but saves no file on disk. The command ids don't change, so scripts keep working.
+- Ribbon order: Ripartizioni, Regioni, Province, Comuni, then Boundaries URL.
+
 ## [0.3.1] - 2026-10-18
 
 ### Added

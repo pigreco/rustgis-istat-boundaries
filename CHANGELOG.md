@@ -2,6 +2,11 @@
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.1] - 2026-10-18
+
+### Added
+- Credits for onData and Alessio Cimarelli in the README and in the plugin description (English and Italian).
+
 ## [0.3.0] - 2026-10-18
 
 ### Added
